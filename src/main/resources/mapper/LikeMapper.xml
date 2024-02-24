@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lchnan7.modules.mapper.LikeMapper">
+
+<select id="selectListInfo" resultType="com.lchnan7.modules.entity.Like">
+select `l`.*,u.real_name, s.title from `like` l   left join `user` u on l.user_id = u.id
+   left join `archives` s on l.archives_id = s.id
+   where 1=1
+   <if test="id !=null">
+       and `l`.id = #{id}
+   </if>
+    <if test="userId !=null">
+        and l.user_id = #{userId}
+    </if>
+    <if test="realName !=null">
+        and u.real_name like concat('%',#{realName},'%')
+    </if>
+            <if test="title !=null">
+        and s.title like concat('%',#{title},'%')
+    </if>
+        </select>
+
+
+</mapper>

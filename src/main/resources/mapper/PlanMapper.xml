@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lchnan7.modules.mapper.PlanMapper">
+
+<select id="selectListInfo" resultType="com.lchnan7.modules.entity.Plan">
+select `p`.*,l.lab_name from `plan` p   left join `lab` l on p.lab_id = l.id
+   where 1=1
+   <if test="id !=null">
+       and `p`.id = #{id}
+   </if>
+    <if test="time !=null">
+        and p.time = #{time}
+    </if>
+    <if test="labId !=null">
+        and p.lab_id = #{labId}
+    </if>
+    <if test="labName !=null">
+        and l.lab_name like concat('%',#{labName},'%')
+    </if>
+        </select>
+
+
+</mapper>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lchnan7.modules.mapper.CommentMapper">
+
+<select id="selectListInfo" resultType="com.lchnan7.modules.entity.Comment">
+select `c`.*,u.real_name,us.real_name as reply_real_name,u.image_url,j.title from `comment` c   left join `user` u on c.user_id = u.id
+   left join `user` us on c.reply_user_id = us.id
+   left join archives j on c.archives_id = j.id
+   where 1=1
+    <if test="userId !=null">
+        and c.user_id = #{userId}
+    </if>
+    <if test="pid !=null">
+        and c.pid = #{pid}
+    </if>
+    <if test="archivesId!=null">
+        and c.archives_id = #{archivesId}
+    </if>
+    <if test="replyUserId !=null">
+        and c.reply_user_id = #{replyUserId}
+    </if>
+    <if test="realName !=null">
+        and u.real_name like concat('%',#{realName},'%')
+    </if>
+    <if test="title !=null">
+        and j.title like concat('%',#{title},'%')
+    </if>
+            <if test="replyRealName !=null">
+        and us.reply_real_name like concat('%',#{replyRealName},'%')
+    </if>
+    order by c.create_time desc
+        </select>
+
+</mapper>

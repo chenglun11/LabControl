@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lchnan7.modules.mapper.AppointMapper">
+
+<select id="selectListInfo" resultType="com.lchnan7.modules.entity.Appoint">
+select `a`.*,u.real_name, l.lab_name,l.location,l.image_url from `appoint` a   left join `user` u on a.user_id = u.id
+   left join `lab` l on a.lab_id = l.id
+   where 1=1
+   <if test="id !=null">
+       and `a`.id = #{id}
+   </if>
+    <if test="userId !=null">
+        and a.user_id = #{userId}
+    </if>
+    <if test="labId !=null">
+        and a.lab_id = #{labId}
+    </if>
+    <if test="status !=null">
+        and a.status = #{status}
+    </if>
+    <if test="time !=null">
+        and a.time = #{time}
+    </if>
+        <if test="labName !=null">
+        and l.lab_name like concat('%',#{labName},'%')
+    </if>
+        <if test="location !=null">
+        and l.location like concat('%',#{location},'%')
+    </if>
+        </select>
+
+
+</mapper>

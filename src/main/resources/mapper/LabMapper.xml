@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lchnan7.modules.mapper.LabMapper">
+
+<select id="selectListInfo" resultType="com.lchnan7.modules.entity.Lab">
+select `l`.*,s.sort_name from `lab` l   left join `sort` s on l.sort_id = s.id
+   where 1=1
+   <if test="id !=null">
+       and `l`.id = #{id}
+   </if>
+    <if test="labName !=null">
+        and  l.lab_name like concat('%',#{labName},'%')
+    </if>
+    <if test="sortId !=null">
+        and l.sort_id = #{sortId}
+    </if>
+    <if test="status !=null">
+        and l.status = #{status}
+    </if>
+    <if test="isBanner !=null">
+        and l.is_banner = #{isBanner}
+    </if>
+    <if test="sortName !=null">
+        and s.sort_name like concat('%',#{sortName},'%')
+    </if>
+        </select>
+
+
+</mapper>

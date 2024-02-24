@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lchnan7.modules.mapper.RepairMapper">
+
+<select id="selectListInfo" resultType="com.lchnan7.modules.entity.Repair">
+select `r`.*,u.real_name, l.lab_name from `repair` r   left join `user` u on r.user_id = u.id
+   left join `lab` l on r.lab_id = l.id
+   where 1=1
+   <if test="id !=null">
+       and `r`.id = #{id}
+   </if>
+    <if test="userId !=null">
+        and r.user_id = #{userId}
+    </if>
+    <if test="labId !=null">
+        and r.lab_id = #{labId}
+    </if>
+    <if test="realName !=null">
+        and u.real_name like concat('%',#{realName},'%')
+    </if>
+            <if test="labName !=null">
+        and l.lab_name like concat('%',#{labName},'%')
+    </if>
+        </select>
+
+
+</mapper>
