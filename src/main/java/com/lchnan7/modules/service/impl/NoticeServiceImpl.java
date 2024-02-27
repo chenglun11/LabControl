@@ -42,26 +42,42 @@ public class NoticeServiceImpl extends ServiceImpl<NoticeMapper, Notice> impleme
 
     @Override
     public Result selectNoticeInfo(Integer id) {
-        return null;
+        Notice notice = noticeMapper.selectById(id);
+        return ResultUtil.success(1,"成功", notice);
     }
 
     @Override
+    @Transactional
     public Result saveNoticeInfo(Notice notice) {
-        return null;
+//        QueryWrapper<Notice> wrapper = new QueryWrapper<>();
+//        wrapper.eq("not_person",notice.getLoginUserId()).eq("id",notice.getId());
+        notice.setCreateTime(TimeUtil.getCurrentTime());
+        notice.setUpdateTime(TimeUtil.getCurrentTime());
+        noticeMapper.insert(notice);
+
+        return ResultUtil.success(1,"成功",null);
     }
 
     @Override
+    @Transactional
     public Result updateNoticeInfo(Notice notice) {
-        return null;
+        notice.setUpdateTime(TimeUtil.getCurrentTime());
+        noticeMapper.updateById(notice);
+        return ResultUtil.success(1,"成功",null);
     }
 
     @Override
+    @Transactional
     public Result delNoticeInfo(Integer id) {
-        return null;
+        noticeMapper.deleteById(id);
+        return ResultUtil.success(1,"成功",null);
     }
 
     @Override
+    @Transactional
     public Result delBatchNoticeInfo(String idList) {
-        return null;
+        List<String> list = Arrays.asList(idList.split(","));
+        noticeMapper.deleteBatchIds(list);
+        return ResultUtil.success(1,"成功",null);
     }
 }

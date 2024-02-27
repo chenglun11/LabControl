@@ -1,6 +1,7 @@
 package com.lchnan7.modules.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModel;
@@ -24,6 +25,16 @@ public class Notice {
      */
     @ApiModelProperty(value = "公告详情")
     private String content;
+
+    @TableField(exist = false)
+    @ApiModelProperty(value = "发布人")
+    private String realName;
+    /**
+     * 用户id
+     */
+    @ApiModelProperty(value = "用户id")
+    private Integer userId;
+
     /**
      * 创建时间
      */
@@ -34,5 +45,8 @@ public class Notice {
      */
     @ApiModelProperty(value = "更新时间")
     private String updateTime;
+
+    @TableField(exist = false)
+    private String loginUserId;
 
 }

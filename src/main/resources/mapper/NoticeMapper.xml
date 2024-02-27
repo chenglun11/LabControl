@@ -4,7 +4,7 @@
 <mapper namespace="com.lchnan7.modules.mapper.NoticeMapper">
 
     <select id="selectListInfo" resultType="com.lchnan7.modules.entity.Notice">
-        select `n`.* from `notice` n
+        select `n`.*,u.real_name from `notice` n left join `user` u on n.user_id = u.id
         where 1=1
         <if test="id !=null">
             and n.id = #{id}
@@ -12,6 +12,13 @@
         <if test="title !=null">
             and n.title like concat('%',#{title},'%')
         </if>
+        <if test="realName !=null">
+            and u.real_name like concat('%',#{realName},'%')
+        </if>
+        <if test="userId !=null">
+            and n.user_id = #{userId}
+        </if>
+        order by n.create_time desc
     </select>
 
 
