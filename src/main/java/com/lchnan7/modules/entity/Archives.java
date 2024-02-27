@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * 攻略
  *
- * @author Mark sunlightcs@gmail.com
+ * @author LCHNAN lchnan7@outlook.com
  * @since 1.0.0 2024-01-05
  */
 @Data

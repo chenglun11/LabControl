@@ -1,7 +1,10 @@
 package com.lchnan7.modules.service.impl;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.lchnan7.modules.entity.Lab;
 import com.lchnan7.modules.entity.Repair;
+import com.lchnan7.modules.mapper.LabMapper;
 import com.lchnan7.modules.mapper.RepairMapper;
+import com.lchnan7.modules.service.DingSyncService;
 import com.lchnan7.modules.utils.Result;
 import com.lchnan7.modules.utils.ResultUtil;
 import com.lchnan7.modules.utils.TimeUtil;
@@ -17,7 +20,7 @@ import java.util.Arrays;
 /**
  * 报修
  *
- * @author Mark sunlightcs@gmail.com
+ * @author LCHNAN lchnan7@outlook.com
  * @since 1.0.0 2024-02-14
  */
 @Service
@@ -59,11 +62,18 @@ public class RepairServiceImpl extends ServiceImpl<RepairMapper, Repair> impleme
      * @param repair
      * @return
      */
+    @Autowired
+    private LabMapper labMapper;
+    @Autowired
+    private DingSyncService dingSyncService;
+
     @Override
     public Result saveRepairInfo(Repair repair) {
         repair.setCreateTime(TimeUtil.getCurrentTime());
         repair.setUpdateTime(TimeUtil.getCurrentTime());
         repairMapper.insert(repair);
+        Lab lab = labMapper.selectById(repair.getLabId());
+        dingSyncService.SendDingFix(lab.getLabName());
         return ResultUtil.success(1,"成功",null);
 }
 

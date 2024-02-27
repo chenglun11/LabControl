@@ -10,7 +10,7 @@ import io.swagger.annotations.ApiModelProperty;
 /**
  * 实验室
  *
- * @author Mark sunlightcs@gmail.com
+ * @author LCHNAN lchnan7@outlook.com
  * @since 1.0.0 2024-02-14
  */
 @Data

@@ -6,7 +6,7 @@ import com.lchnan7.modules.utils.Result;
 /**
  * 分类
  *
- * @author Mark sunlightcs@gmail.com
+ * @author LCHNAN lchnan7@outlook.com
  * @since 1.0.0 2024-01-05
  */
 public interface SortService extends IService<Sort>{

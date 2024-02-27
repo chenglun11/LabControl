@@ -6,7 +6,7 @@ import com.lchnan7.modules.utils.Result;
 /**
  * 用户
  *
- * @author Mark sunlightcs@gmail.com
+ * @author LCHNAN lchnan7@outlook.com
  * @since 1.0.0 2023-11-30
  */
 public interface UserService extends IService<User>{
@@ -70,5 +70,10 @@ public interface UserService extends IService<User>{
     Result updatePassword(User user);
 
 
+    /**
+     * 更新密码接口
+     * @param user
+     * @return
+     */
 
 }

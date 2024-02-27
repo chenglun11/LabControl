@@ -8,6 +8,7 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.io.UnsupportedEncodingException;
+import java.text.MessageFormat;
 import java.util.Properties;
 import java.util.Random;
 

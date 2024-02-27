@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 /**
  * 预约
  *
- * @author Mark sunlightcs@gmail.com
+ * @author LCHNAN lchnan7@outlook.com
  * @since 1.0.0 2024-02-14
  */
 @RestController
@@ -89,13 +89,6 @@ public class AppointController {
     public Result delBatchAppointInfo(String idList){
         return appointService.delBatchAppointInfo(idList);
     }
-
-
-
-
-
-
-
 
 
 

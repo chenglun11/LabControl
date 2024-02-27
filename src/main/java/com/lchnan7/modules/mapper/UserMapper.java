@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 /**
  * 用户
  *
- * @author Mark sunlightcs@gmail.com
+ * @author LCHNAN lchnan7@outlook.com
  * @since 1.0.0 2023-11-30
  */
 @Mapper

@@ -10,6 +10,7 @@ import com.lchnan7.modules.mapper.LabMapper;
 import com.lchnan7.modules.mapper.PlanMapper;
 import com.lchnan7.modules.mapper.UserMapper;
 import com.lchnan7.modules.service.AppointService;
+import com.lchnan7.modules.service.DingSyncService;
 import com.lchnan7.modules.service.EmailSyncService;
 import com.lchnan7.modules.utils.Result;
 import com.lchnan7.modules.utils.ResultUtil;
@@ -24,7 +25,7 @@ import com.lchnan7.modules.utils.TimeUtil;
 /**
  * 预约
  *
- * @author Mark sunlightcs@gmail.com
+ * @author LCHNAN lchnan7@outlook.com
  * @since 1.0.0 2024-02-14
  */
 @Service
@@ -70,6 +71,10 @@ public class AppointServiceImpl extends ServiceImpl<AppointMapper, Appoint> impl
      * @param appoint
      * @return
      */
+
+    @Autowired
+    private LabMapper labMapper;
+
     @Override
     public Result saveAppointInfo(Appoint appoint) {
 
@@ -91,6 +96,14 @@ public class AppointServiceImpl extends ServiceImpl<AppointMapper, Appoint> impl
         appoint.setCreateTime(TimeUtil.getCurrentTime());
         appoint.setUpdateTime(TimeUtil.getCurrentTime());
         appointMapper.insert(appoint);
+        //钉钉
+//        User user = userMapper.selectById(appoint1.getUserId());
+//        String username = user.getRealName();
+        //String text = "您有新的预约事项，来自"+appoint1.getLabName()+".";
+
+        Lab lab = labMapper.selectById(appoint.getLabId());
+
+        dingSyncService.SendDing(lab.getLabName());
         return ResultUtil.success(1,"成功",null);
     }
 
@@ -99,8 +112,7 @@ public class AppointServiceImpl extends ServiceImpl<AppointMapper, Appoint> impl
     @Autowired
     private EmailSyncService emailSyncService;
     @Autowired
-    private LabMapper labMapper;
-
+    private DingSyncService dingSyncService;
     /**
      * 更新预约接口实现类
      * @param appoint

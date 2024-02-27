@@ -6,7 +6,7 @@ import com.lchnan7.modules.utils.Result;
 /**
  * 计划
  *
- * @author Mark sunlightcs@gmail.com
+ * @author LCHNAN lchnan7@outlook.com
  * @since 1.0.0 2024-02-21
  */
 public interface PlanService extends IService<Plan>{

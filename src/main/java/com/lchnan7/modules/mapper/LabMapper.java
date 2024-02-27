@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * 实验室
  *
- * @author Mark sunlightcs@gmail.com
+ * @author LCHNAN lchnan7@outlook.com
  * @since 1.0.0 2024-02-14
  */
 @Mapper

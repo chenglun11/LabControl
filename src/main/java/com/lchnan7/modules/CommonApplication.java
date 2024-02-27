@@ -1,5 +1,6 @@
 package com.lchnan7.modules;
 
+import com.jaemon.dingtalk.dinger.annatations.DingerScan;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -8,6 +9,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
 @MapperScan("com.lchnan7.modules.mapper")
+@DingerScan(basePackages = "com.lchnan7.modules.dinger")
 @EnableAsync
 @EnableScheduling
 public class CommonApplication {

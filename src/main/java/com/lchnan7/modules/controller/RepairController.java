@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 /**
  * 报修
  *
- * @author Mark sunlightcs@gmail.com
+ * @author LCHNAN lchnan7@outlook.com
  * @since 1.0.0 2024-02-14
  */
 @RestController
@@ -89,12 +89,6 @@ public class RepairController {
     public Result delBatchRepairInfo(String idList){
         return repairService.delBatchRepairInfo(idList);
     }
-
-
-
-
-
-
 
 
 

@@ -6,7 +6,7 @@ import com.lchnan7.modules.utils.Result;
 /**
  * 实验室
  *
- * @author Mark sunlightcs@gmail.com
+ * @author LCHNAN lchnan7@outlook.com
  * @since 1.0.0 2024-02-14
  */
 public interface LabService extends IService<Lab>{

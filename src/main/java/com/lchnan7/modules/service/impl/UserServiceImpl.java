@@ -18,7 +18,7 @@ import com.lchnan7.modules.utils.TimeUtil;
 /**
  * 用户
  *
- * @author Mark sunlightcs@gmail.com
+ * @author LCHNAN lchnan7@outlook.com
  * @since 1.0.0 2023-11-30
  */
 @Service
@@ -39,7 +39,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         if (user == null){
             return ResultUtil.error(-1,"登录失败,用户名或者密码错误");
         }else {
-                        return ResultUtil.success(1,"登录成功",user);
+            return ResultUtil.success(1,"登录成功",user);
         }
     }
 
