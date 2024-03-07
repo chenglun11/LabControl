@@ -14,13 +14,17 @@ import com.lchnan7.modules.service.DingSyncService;
 import com.lchnan7.modules.service.EmailSyncService;
 import com.lchnan7.modules.utils.Result;
 import com.lchnan7.modules.utils.ResultUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Arrays;
+import java.util.Map;
+
 import com.lchnan7.modules.utils.TimeUtil;
 /**
  * 预约
@@ -120,22 +124,39 @@ public class AppointServiceImpl extends ServiceImpl<AppointMapper, Appoint> impl
      */
     @Override
     public Result updateAppointInfo(Appoint appoint) {
+        Appoint appoint1 = appointMapper.selectById(appoint.getId());
         Lab lab1 = labMapper.selectById(appoint.getLabId());
         if (lab1.getStatus() == 3){
             return ResultUtil.error(-1,"该实验室维护中");
         }
-        Appoint appoint1 = appointMapper.selectById(appoint.getId());
+
         if (appoint1.getStatus() == 2){
             return ResultUtil.error(-1,"该申请已经审核通过");
         }
         appoint.setUpdateTime(TimeUtil.getCurrentTime());
         appointMapper.updateById(appoint);
         if (appoint.getStatus() == 2){
-            //代表审核通过
             User user = userMapper.selectById(appoint1.getUserId());
             Lab lab = labMapper.selectById(appoint.getLabId());
-            String text = "亲爱的"+user.getRealName()+"同学,您申请的实验室"+lab.getLabName()+"已经审核通过";
-            emailSyncService.sendSMS(user.getEmail(),text);
+
+            Map<String, Object> templateModel = new HashMap<>();
+            templateModel.put("name", user.getRealName());
+            templateModel.put("labName", lab.getLabName());
+            templateModel.put("approvalTime", appoint.getUpdateTime());
+            //代表审核通过
+            emailSyncService.sendSMS(user.getEmail(),"实验室申请审核结果",templateModel,"approvalNotification");
+        }
+        if (appoint.getStatus() == 3) {
+            System.out.println("3");
+            User usererr = userMapper.selectById(appoint1.getUserId());
+            Lab laberr = labMapper.selectById(appoint.getLabId());
+
+            Map<String, Object> templateModel = new HashMap<>();
+            templateModel.put("name", usererr.getRealName());
+            templateModel.put("labName", laberr.getLabName());
+            templateModel.put("approvalTime", appoint.getUpdateTime());
+            //代表审核通过
+            emailSyncService.sendSMS(usererr.getEmail(),"实验室申请审核结果",templateModel,"errorNotification");
         }
         return ResultUtil.success(1,"成功",null);
     }
