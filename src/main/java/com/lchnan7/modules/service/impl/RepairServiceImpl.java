@@ -4,11 +4,13 @@ import com.lchnan7.modules.entity.Lab;
 import com.lchnan7.modules.entity.Repair;
 import com.lchnan7.modules.mapper.LabMapper;
 import com.lchnan7.modules.mapper.RepairMapper;
+import com.lchnan7.modules.mapper.UserMapper;
 import com.lchnan7.modules.service.DingSyncService;
 import com.lchnan7.modules.utils.Result;
 import com.lchnan7.modules.utils.ResultUtil;
 import com.lchnan7.modules.utils.TimeUtil;
 import com.lchnan7.modules.service.RepairService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.github.pagehelper.PageHelper;
@@ -23,6 +25,7 @@ import java.util.Arrays;
  * @author LCHNAN lchnan7@outlook.com
  * @since 1.0.0 2024-02-14
  */
+@Slf4j
 @Service
 public class RepairServiceImpl extends ServiceImpl<RepairMapper, Repair> implements RepairService {
 
@@ -66,13 +69,21 @@ public class RepairServiceImpl extends ServiceImpl<RepairMapper, Repair> impleme
     private LabMapper labMapper;
     @Autowired
     private DingSyncService dingSyncService;
+    @Autowired
+    private UserMapper userMapper;
 
     @Override
     public Result saveRepairInfo(Repair repair) {
+
+        //User user = userMapper.selectById(repair.getUserId());
+        Lab lab = labMapper.selectById(repair.getLabId());
+        log.info(lab.getLabName());
+//        repair.setLabName(lab.getLabName());
+
         repair.setCreateTime(TimeUtil.getCurrentTime());
         repair.setUpdateTime(TimeUtil.getCurrentTime());
         repairMapper.insert(repair);
-        Lab lab = labMapper.selectById(repair.getLabId());
+
         dingSyncService.SendDingFix(lab.getLabName());
         return ResultUtil.success(1,"成功",null);
 }
