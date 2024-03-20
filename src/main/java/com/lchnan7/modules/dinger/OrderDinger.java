@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 public interface OrderDinger {
 
     @DingerMarkdown(
-            value = "您有新的未处理审核,实验室为${appointLab}，请[点此链接](点此链接)登录系统进行处理",
+            value = "#您有新的未处理审核,实验室为${appointLab}, 请[点此链接](http://lab.ca7.asia)登录系统进行处理",
             title = "预约申请")
     DingTalkResult orderSuccess(String appointLab);
 
