@@ -1,8 +1,6 @@
 package com.lchnan7.modules.controller;
 
-import com.lchnan7.modules.entity.Archives;
 import com.lchnan7.modules.entity.Notice;
-import com.lchnan7.modules.mapper.NoticeMapper;
 import com.lchnan7.modules.service.NoticeService;
 import com.lchnan7.modules.utils.Result;
 import io.swagger.annotations.Api;

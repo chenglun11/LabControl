@@ -1,7 +1,6 @@
 package com.lchnan7.modules.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.lchnan7.modules.entity.Archives;
 import com.lchnan7.modules.entity.Notice;
 import com.lchnan7.modules.utils.Result;
 

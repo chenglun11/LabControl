@@ -1,9 +1,11 @@
 package com.lchnan7.modules.config;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
-
 @Configuration
 public class EmailConfig {
+
+    private static int springMailPort;
+
     private static String springMailHost;
 
     private static String springMailUserName;
@@ -13,6 +15,7 @@ public class EmailConfig {
     public static String getSpringMailHost() {
         return springMailHost;
     }
+
 
     @Value("${spring.mail.host}")
     public void setSpringMailHost(String springMailHost) {
@@ -35,5 +38,13 @@ public class EmailConfig {
     @Value("${spring.mail.password}")
     public void setSpringMailPassword(String springMailPassword) {
         EmailConfig.springMailPassword = springMailPassword;
+    }
+
+    public static int getSpringMailPort() {
+        return springMailPort;
+    }
+    @Value("${spring.mail.port}")
+    public void setSpringMailPort(Integer springMailPort) {
+        EmailConfig.springMailPort = springMailPort;
     }
 }

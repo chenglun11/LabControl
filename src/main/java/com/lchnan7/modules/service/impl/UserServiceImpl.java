@@ -34,7 +34,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     public Result login(User user2) {
         QueryWrapper<User> wrapper = new QueryWrapper<>();
-        wrapper.eq("user_name",user2.getUserName()).eq("password",user2.getPassword()).eq("user_type",user2.getUserType());
+        wrapper.eq("user_name",user2.getUserName()).eq("password",user2.getPassword());
         User user = userMapper.selectOne(wrapper);
         if (user == null){
             return ResultUtil.error(-1,"登录失败,用户名或者密码错误");

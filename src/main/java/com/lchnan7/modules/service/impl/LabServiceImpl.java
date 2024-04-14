@@ -1,8 +1,11 @@
 package com.lchnan7.modules.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+
 import com.lchnan7.modules.entity.Lab;
+import com.lchnan7.modules.mapper.AppointMapper;
 import com.lchnan7.modules.mapper.LabMapper;
+
 import com.lchnan7.modules.utils.Result;
 import com.lchnan7.modules.service.LabService;
 import com.lchnan7.modules.utils.ResultUtil;
@@ -11,8 +14,8 @@ import org.springframework.stereotype.Service;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
-import java.util.List;
-import java.util.Arrays;
+import java.util.*;
+
 import com.lchnan7.modules.utils.TimeUtil;
 /**
  * 实验室
@@ -26,6 +29,8 @@ public class LabServiceImpl extends ServiceImpl<LabMapper, Lab> implements LabSe
     @Autowired
     private LabMapper labMapper;
 
+    @Autowired
+    private AppointMapper appointMapper;
 
 
     /**
@@ -114,7 +119,5 @@ public class LabServiceImpl extends ServiceImpl<LabMapper, Lab> implements LabSe
         labMapper.deleteBatchIds(list);
         return ResultUtil.success(1,"成功",null);
     }
-
-
 
 }

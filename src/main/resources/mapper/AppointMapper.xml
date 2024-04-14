@@ -30,5 +30,10 @@ select `a`.*,u.real_name, l.lab_name,l.location,l.image_url from `appoint` a   l
     </if>
         </select>
 
-
+<select id="selectAll" resultType="java.util.LinkedHashMap">
+    SELECT(SELECT COUNT(*) FROM appoint WHERE `status` = 1) STA,
+          (SELECT COUNT(*) FROM `repair` WHERE repair_person is null) REP,
+          (SELECT COUNT(*) FROM `user`) HUM,
+          (SELECT COUNT(*) FROM `lab`) LAB_VALUES
+</select>
 </mapper>

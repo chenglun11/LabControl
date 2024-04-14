@@ -24,5 +24,4 @@ select `r`.*,u.real_name, l.lab_name from `repair` r   left join `user` u on r.u
     </if>
         </select>
 
-
 </mapper>

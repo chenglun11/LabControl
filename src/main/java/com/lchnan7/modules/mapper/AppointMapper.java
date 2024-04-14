@@ -2,6 +2,8 @@ package com.lchnan7.modules.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.lchnan7.modules.entity.Appoint;
 import org.apache.ibatis.annotations.Mapper;
+
+import java.util.HashMap;
 import java.util.List;
 /**
  * 预约
@@ -14,5 +16,7 @@ public interface AppointMapper extends BaseMapper<Appoint> {
 
     List<Appoint> selectListInfo(Appoint appoint);
 
-	
+    //Integer selectStatusCount(Integer status);
+
+    List<HashMap<String,Object>>selectAll();
 }

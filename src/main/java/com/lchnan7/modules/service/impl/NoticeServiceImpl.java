@@ -1,14 +1,11 @@
 package com.lchnan7.modules.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.lchnan7.modules.entity.*;
 import com.lchnan7.modules.mapper.*;
-import com.lchnan7.modules.service.ArchivesService;
 import com.lchnan7.modules.service.NoticeService;
-import com.lchnan7.modules.utils.IpUtils;
 import com.lchnan7.modules.utils.Result;
 import com.lchnan7.modules.utils.ResultUtil;
 import com.lchnan7.modules.utils.TimeUtil;
@@ -16,9 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.List;
 
 /**

@@ -57,6 +57,5 @@ public interface AppointService extends IService<Appoint>{
     Result delBatchAppointInfo(String idList);
 
 
-
-
+    Result selectAll();
 }

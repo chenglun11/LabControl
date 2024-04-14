@@ -9,6 +9,8 @@ import com.lchnan7.modules.utils.*;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.xml.ws.BindingType;
+
 /**
  * 报修
  *
@@ -89,8 +91,5 @@ public class RepairController {
     public Result delBatchRepairInfo(String idList){
         return repairService.delBatchRepairInfo(idList);
     }
-
-
-
 
 }

@@ -14,16 +14,13 @@ import com.lchnan7.modules.service.DingSyncService;
 import com.lchnan7.modules.service.EmailSyncService;
 import com.lchnan7.modules.utils.Result;
 import com.lchnan7.modules.utils.ResultUtil;
-import lombok.extern.slf4j.Slf4j;
+import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Arrays;
-import java.util.Map;
+import java.util.*;
 
 import com.lchnan7.modules.utils.TimeUtil;
 /**
@@ -155,7 +152,7 @@ public class AppointServiceImpl extends ServiceImpl<AppointMapper, Appoint> impl
             templateModel.put("name", usererr.getRealName());
             templateModel.put("labName", laberr.getLabName());
             templateModel.put("approvalTime", appoint.getUpdateTime());
-            //代表审核通过
+            //代表审核失败
             emailSyncService.sendSMS(usererr.getEmail(),"实验室申请审核结果",templateModel,"errorNotification");
         }
         return ResultUtil.success(1,"成功",null);
@@ -184,6 +181,11 @@ public class AppointServiceImpl extends ServiceImpl<AppointMapper, Appoint> impl
         return ResultUtil.success(1,"成功",null);
     }
 
-
+    @Override
+    public Result selectAll(){
+        List<HashMap<String,Object>> all = appointMapper.selectAll();
+        //System.out.println(all);
+        return ResultUtil.success(1,"成功",all);
+    }
 
 }

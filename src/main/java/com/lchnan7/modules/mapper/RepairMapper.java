@@ -14,5 +14,6 @@ public interface RepairMapper extends BaseMapper<Repair> {
 
     List<Repair> selectListInfo(Repair repair);
 
+    Integer selectNoCount();
 	
 }

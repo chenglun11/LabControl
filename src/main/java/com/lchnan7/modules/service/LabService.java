@@ -56,7 +56,4 @@ public interface LabService extends IService<Lab>{
      */
     Result delBatchLabInfo(String idList);
 
-
-
-
 }
